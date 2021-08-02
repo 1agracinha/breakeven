@@ -1,4 +1,5 @@
-import 'package:breakeven/screens/saldo.dart';
+import 'package:breakeven/screens/saldo_entrada/saldo.dart';
+import 'package:breakeven/theme/cores.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -11,7 +12,7 @@ class Splash extends StatelessWidget {
         SplashScreen(
           seconds: 6,
           routeName: "/",
-          backgroundColor: Color(0xff00B3CB),
+          backgroundColor: primaryColor,
           navigateAfterSeconds: Saldo(),
           loaderColor: Colors.transparent,
         ),

@@ -1,5 +1,5 @@
-
 import 'package:breakeven/screens/splash.dart';
+import 'package:breakeven/theme/cores.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -17,12 +17,11 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Color(0xff00B3CB),
-        accentColor: Color(0xff00B3CB),
-        cursorColor: Color(0xff00B3CB)
+        primaryColor: primaryColor,
+        accentColor: primaryColor,
+        textSelectionTheme: TextSelectionThemeData(cursorColor: primaryColor),
       ),
-        home: Splash(),
+      home: Splash(),
     );
-    
   }
 }
