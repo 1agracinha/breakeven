@@ -53,6 +53,10 @@ class _MovimentacaoWidgetState extends State<MovimentacaoWidget> {
                     ),
                   ),
             background: Container(color: vermelho),
+            direction: DismissDirection.startToEnd,
+            confirmDismiss: (dissmissFunction) {
+              //TODO: PopUp Confirmacao
+            },
           );
         },
       );

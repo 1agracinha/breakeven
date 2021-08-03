@@ -25,7 +25,7 @@ class _AtualizarSaldoState extends State<AtualizarSaldo> {
           backgroundColor: Colors.white,
           title: Center(
             child: Text(
-              "Atualizar Saldo",
+              "Adicionar Movimentação",
               style: TextStyle(color: Theme.of(context).primaryColor),
             ),
           ),

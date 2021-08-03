@@ -40,7 +40,7 @@ class LoginPage extends StatelessWidget {
                   MainButton(
                     text: "Entrar",
                     onPressed: () {
-                      Get.to(Saldo(), transition: Transition.rightToLeft);
+                      Get.off(Saldo(), transition: Transition.rightToLeft);
                     },
                   )
                 ],
