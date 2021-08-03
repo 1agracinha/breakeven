@@ -11,9 +11,9 @@ class SaldoController extends GetxController {
     valorCalculado.value = 0.0;
     for (SaldoMovimentacao s in movimentacao) {
       if (s.isReceita) {
-        valorCalculado = valorCalculado + double.parse(s.valor);
+        valorCalculado.value = valorCalculado.value + double.parse(s.valor);
       } else {
-        valorCalculado = valorCalculado - double.parse(s.valor);
+        valorCalculado.value = valorCalculado.value - double.parse(s.valor);
       }
       print("VALOR CALC: $valorCalculado, ${s.isReceita}");
     }
