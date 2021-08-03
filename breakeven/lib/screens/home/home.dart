@@ -21,18 +21,20 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          CabecalhoHome(
-            sc: sc,
-          ),
-          Divider(
-            color: Colors.black26,
-          ),
-          Expanded(
-            child: MovimentacaoWidget(),
-          )
-        ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            CabecalhoHome(
+              sc: sc,
+            ),
+            Divider(
+              color: Colors.black26,
+            ),
+            Expanded(
+              child: MovimentacaoWidget(),
+            )
+          ],
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: AtualizarSaldoButton(
