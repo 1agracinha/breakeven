@@ -1,5 +1,5 @@
+import 'package:breakeven/controller/usuario_controller.dart';
 import 'package:breakeven/screens/cadastro/cadastro_page.dart';
-import 'package:breakeven/screens/saldo_entrada/saldo.dart';
 import 'package:breakeven/shared/logo_azul.dart';
 import 'package:breakeven/shared/main_button.dart';
 import 'package:breakeven/shared/main_textfield.dart';
@@ -8,9 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
-  final TextEditingController usuarioController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController senhaController = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey();
+  final UsuarioController usuarioController = UsuarioController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,21 +27,31 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 children: [
                   MainTextField(
-                    labelText: "Usuário",
-                    textController: usuarioController,
-                    validator: (value) {},
+                    labelText: "E-mail",
+                    textController: emailController,
+                    validator: (value) {
+                      if (value.isEmpty) return "Campo Obrigatório!";
+                      if (!GetUtils.isEmail(value)) return "E-mail inválido";
+                      return null;
+                    },
                   ),
                   MainTextField(
                       labelText: "Senha",
                       textController: senhaController,
-                      validator: (value) {}),
+                      validator: (value) {
+                        if (value.isEmpty) return "Campo Obrigatório!";
+                        return null;
+                      }),
                   SizedBox(
                     height: 26,
                   ),
                   MainButton(
                     text: "Entrar",
                     onPressed: () {
-                      Get.off(Saldo(), transition: Transition.rightToLeft);
+                      if (formkey.currentState.validate()) {
+                        usuarioController.authenticateController(
+                            emailController.text, senhaController.text);
+                      }
                     },
                   )
                 ],

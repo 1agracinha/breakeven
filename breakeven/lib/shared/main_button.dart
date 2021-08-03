@@ -20,8 +20,8 @@ class MainButton extends StatelessWidget {
         padding: EdgeInsets.only(
             left: MediaQuery.of(context).size.width * 0.3,
             right: MediaQuery.of(context).size.width * 0.3,
-            top: 12,
-            bottom: 12),
+            top: 8,
+            bottom: 8),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
         ),
