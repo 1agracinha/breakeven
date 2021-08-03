@@ -15,11 +15,16 @@ class _MovimentacaoWidgetState extends State<MovimentacaoWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (sc.movimentacao.length == 0)
+      return Center(
+        child: Text("Ainda não há movimentações"),
+      );
     return ListView.builder(
       padding: EdgeInsets.only(top: 10),
       itemCount: sc.movimentacao.length,
       itemBuilder: (context, index) {
         final item = sc.movimentacao[index];
+
         return Dismissible(
           key: Key(item.valor),
           onDismissed: (direction) {
