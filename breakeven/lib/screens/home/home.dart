@@ -1,10 +1,12 @@
 import 'package:breakeven/controller/saldo_controller.dart';
+import 'package:breakeven/controller/usuario_controller.dart';
 import 'package:breakeven/screens/atualizar_saldo/atualizar_saldo.dart';
 import 'package:breakeven/screens/home/widgets/atualizar_saldo_button.dart';
 import 'package:breakeven/screens/home/widgets/cabecalho_home.dart';
 import 'package:breakeven/screens/home/widgets/movimentacao_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class Home extends StatefulWidget {
   final String valor;
@@ -16,6 +18,19 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  // UsuarioController usuarioController = Get.find();
+  // GetStorage box = GetStorage('usuario');
+  // @override
+  // void initState() {
+  //   carregarIdUsuario().then((id) => usuarioController.idUsuario.value = id);
+  //   super.initState();
+  // }
+
+  // Future carregarIdUsuario() async {
+  //   var id = await box.read("idUsuario");
+  //   return id;
+  // }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SaldoController>(

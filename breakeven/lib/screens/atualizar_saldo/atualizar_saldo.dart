@@ -19,6 +19,7 @@ class _AtualizarSaldoState extends State<AtualizarSaldo> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SaldoController>(
+      init: SaldoController(),
       builder: (saldoController) => Scaffold(
         appBar: AppBar(
           iconTheme: IconThemeData(color: Theme.of(context).primaryColor),

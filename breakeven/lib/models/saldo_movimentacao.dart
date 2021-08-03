@@ -3,4 +3,11 @@ class SaldoMovimentacao {
   String valor;
 
   SaldoMovimentacao({this.isReceita, this.valor});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'valor': this.valor,
+      'isReceita': this.isReceita,
+    };
+  }
 }

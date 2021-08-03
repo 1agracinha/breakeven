@@ -1,3 +1,4 @@
+import 'package:breakeven/data/saldo_repository.dart';
 import 'package:breakeven/models/saldo_movimentacao.dart';
 import 'package:get/get.dart';
 
@@ -6,6 +7,13 @@ class SaldoController extends GetxController {
   var valorAtual = "0".obs;
   var valorCalculado = 0.0.obs;
   var movimentacao = <SaldoMovimentacao>[].obs;
+  MovimentacaoRepository movimentacaoRepository = MovimentacaoRepository();
+
+  salvarMovimentacao(SaldoMovimentacao movimentacao, String idUsuario) {
+    final response =
+        movimentacaoRepository.adicionarMovimentacao(movimentacao, idUsuario);
+    return response;
+  }
 
   calcularMovimentacao() {
     valorCalculado.value = 0.0;
