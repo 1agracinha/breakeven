@@ -16,59 +16,60 @@ class _AtualizarSaldoState extends State<AtualizarSaldo> {
   bool receita = true;
   TextEditingController valorSaldoController = TextEditingController();
 
-  SaldoController sc = Get.find();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
-        backgroundColor: Colors.white,
-        title: Center(
-          child: Text(
-            "Atualizar Saldo",
-            style: TextStyle(color: Theme.of(context).primaryColor),
+    return GetBuilder<SaldoController>(
+      builder: (saldoController) => Scaffold(
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
+          backgroundColor: Colors.white,
+          title: Center(
+            child: Text(
+              "Atualizar Saldo",
+              style: TextStyle(color: Theme.of(context).primaryColor),
+            ),
           ),
         ),
-      ),
-      body: AtualizarSaldoConteudo(
-        widgets: [
-          Text("É uma receita ou despesa?",
-              style: TextStyle(fontSize: 18, color: Colors.black38)),
-          Row(
-            children: [
-              ReceitaButton(
-                text: "receita",
-                activeButtonColor: verde,
-                disableButtonColor: Colors.black26,
-                isReceita: receita,
-                onTap: () {
-                  setState(() {
-                    receita = true;
-                  });
-                },
-              ),
-              ReceitaButton(
-                text: "despesa",
-                activeButtonColor: Colors.black26,
-                disableButtonColor: vermelho,
-                isReceita: receita,
-                onTap: () {
-                  setState(() {
-                    receita = false;
-                  });
-                },
-              ),
-            ],
-          ),
-          AtualizarSaldoTextField(
-            valorSaldoController: valorSaldoController,
-          )
-        ],
-      ),
-      floatingActionButton: SalvarSaldoButton(
-        isReceita: receita,
-        sc: sc,
-        valorSaldoController: valorSaldoController,
+        body: AtualizarSaldoConteudo(
+          widgets: [
+            Text("É uma receita ou despesa?",
+                style: TextStyle(fontSize: 18, color: Colors.black38)),
+            Row(
+              children: [
+                ReceitaButton(
+                  text: "receita",
+                  activeButtonColor: verde,
+                  disableButtonColor: Colors.black26,
+                  isReceita: receita,
+                  onTap: () {
+                    setState(() {
+                      receita = true;
+                    });
+                  },
+                ),
+                ReceitaButton(
+                  text: "despesa",
+                  activeButtonColor: Colors.black26,
+                  disableButtonColor: vermelho,
+                  isReceita: receita,
+                  onTap: () {
+                    setState(() {
+                      receita = false;
+                    });
+                  },
+                ),
+              ],
+            ),
+            AtualizarSaldoTextField(
+              valorSaldoController: valorSaldoController,
+            )
+          ],
+        ),
+        floatingActionButton: SalvarSaldoButton(
+          isReceita: receita,
+          sc: saldoController,
+          valorSaldoController: valorSaldoController,
+        ),
       ),
     );
   }

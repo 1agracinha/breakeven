@@ -16,33 +16,33 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  SaldoController sc = Get.find();
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            CabecalhoHome(
-              sc: sc,
-            ),
-            Divider(
-              color: Colors.black26,
-            ),
-            Expanded(
-              child: MovimentacaoWidget(),
-            )
-          ],
+    return GetBuilder<SaldoController>(
+      builder: (saldoController) => Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              CabecalhoHome(
+                sc: saldoController,
+              ),
+              Divider(
+                color: Colors.black26,
+              ),
+              Expanded(
+                child: MovimentacaoWidget(),
+              )
+            ],
+          ),
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: AtualizarSaldoButton(
-        onTap: () {
-          Get.to(AtualizarSaldo(),
-              transition: Transition.rightToLeft,
-              duration: Duration(milliseconds: 500));
-        },
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: AtualizarSaldoButton(
+          onTap: () {
+            Get.to(AtualizarSaldo(),
+                transition: Transition.rightToLeft,
+                duration: Duration(milliseconds: 500));
+          },
+        ),
       ),
     );
   }
