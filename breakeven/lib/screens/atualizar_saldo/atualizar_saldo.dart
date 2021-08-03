@@ -60,7 +60,9 @@ class _AtualizarSaldoState extends State<AtualizarSaldo> {
               ),
             ],
           ),
-          AtualizarSaldoTextField()
+          AtualizarSaldoTextField(
+            valorSaldoController: valorSaldoController,
+          )
         ],
       ),
       floatingActionButton: SalvarSaldoButton(
