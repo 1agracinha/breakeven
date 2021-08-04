@@ -1,5 +1,6 @@
 import 'package:breakeven/data/saldo_repository.dart';
 import 'package:breakeven/models/saldo_movimentacao.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class SaldoController extends GetxController {
@@ -12,6 +13,18 @@ class SaldoController extends GetxController {
   salvarMovimentacao(SaldoMovimentacao movimentacao, String idUsuario) {
     final response =
         movimentacaoRepository.adicionarMovimentacao(movimentacao, idUsuario);
+    return response;
+  }
+
+  Future<List<QueryDocumentSnapshot>> getMovimentacao(String idUsuario) async {
+    final response = await movimentacaoRepository.getMovimentacao(idUsuario);
+    return response;
+  }
+
+  Future<DocumentSnapshot> getMovimentacaoDetalhes(
+      String idUsuario, String idMovimentacao) async {
+    final response = await movimentacaoRepository.getMovimentacaoDetalhes(
+        idUsuario, idMovimentacao);
     return response;
   }
 

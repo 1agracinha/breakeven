@@ -1,8 +1,11 @@
 import 'package:breakeven/controller/saldo_controller.dart';
+import 'package:breakeven/controller/usuario_controller.dart';
+import 'package:breakeven/models/saldo_movimentacao.dart';
 import 'package:breakeven/screens/atualizar_saldo/widgets/atualizar_saldo_conteudo.dart';
 import 'package:breakeven/screens/atualizar_saldo/widgets/receita_button.dart';
 import 'package:breakeven/screens/atualizar_saldo/widgets/atualizar_saldo_textfield.dart';
 import 'package:breakeven/screens/atualizar_saldo/widgets/salvar_saldo_button.dart';
+import 'package:breakeven/screens/home/home.dart';
 import 'package:breakeven/theme/cores.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,58 +21,80 @@ class _AtualizarSaldoState extends State<AtualizarSaldo> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SaldoController>(
-      init: SaldoController(),
-      builder: (saldoController) => Scaffold(
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
-          backgroundColor: Colors.white,
-          title: Center(
-            child: Text(
-              "Adicionar Movimentação",
-              style: TextStyle(color: Theme.of(context).primaryColor),
+    return GetBuilder<UsuarioController>(
+      builder: (usuario) => GetBuilder<SaldoController>(
+        init: SaldoController(),
+        builder: (saldoController) => Scaffold(
+          appBar: AppBar(
+            iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
+            backgroundColor: Colors.white,
+            title: Center(
+              child: Text(
+                "Adicionar Movimentação",
+                style: TextStyle(color: Theme.of(context).primaryColor),
+              ),
             ),
           ),
-        ),
-        body: AtualizarSaldoConteudo(
-          widgets: [
-            Text("É uma receita ou despesa?",
-                style: TextStyle(fontSize: 18, color: Colors.black38)),
-            Row(
-              children: [
-                ReceitaButton(
-                  text: "receita",
-                  activeButtonColor: verde,
-                  disableButtonColor: Colors.black26,
+          body: AtualizarSaldoConteudo(
+            widgets: [
+              Text("É uma receita ou despesa?",
+                  style: TextStyle(fontSize: 18, color: Colors.black38)),
+              Row(
+                children: [
+                  ReceitaButton(
+                    text: "receita",
+                    activeButtonColor: verde,
+                    disableButtonColor: Colors.black26,
+                    isReceita: receita,
+                    onTap: () {
+                      setState(() {
+                        receita = true;
+                      });
+                    },
+                  ),
+                  ReceitaButton(
+                    text: "despesa",
+                    activeButtonColor: Colors.black26,
+                    disableButtonColor: vermelho,
+                    isReceita: receita,
+                    onTap: () {
+                      setState(() {
+                        receita = false;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              AtualizarSaldoTextField(
+                valorSaldoController: valorSaldoController,
+              )
+            ],
+          ),
+          floatingActionButton: SalvarSaldoButton(
+            isReceita: receita,
+            sc: saldoController,
+            valorSaldoController: valorSaldoController,
+            onPressed: () {
+              saldoController.movimentacao.add(
+                SaldoMovimentacao(
+                  valor: valorSaldoController.text,
                   isReceita: receita,
-                  onTap: () {
-                    setState(() {
-                      receita = true;
-                    });
-                  },
                 ),
-                ReceitaButton(
-                  text: "despesa",
-                  activeButtonColor: Colors.black26,
-                  disableButtonColor: vermelho,
-                  isReceita: receita,
-                  onTap: () {
-                    setState(() {
-                      receita = false;
-                    });
-                  },
-                ),
-              ],
-            ),
-            AtualizarSaldoTextField(
-              valorSaldoController: valorSaldoController,
-            )
-          ],
-        ),
-        floatingActionButton: SalvarSaldoButton(
-          isReceita: receita,
-          sc: saldoController,
-          valorSaldoController: valorSaldoController,
+              );
+
+              saldoController.salvarMovimentacao(
+                  SaldoMovimentacao(
+                      valor: valorSaldoController.text,
+                      isReceita: receita,
+                      idUsuario: usuario.idUsuario.value),
+                  usuario.idUsuario.value);
+
+              saldoController.calcularMovimentacao();
+              Get.to(Home(),
+                  transition: Transition.rightToLeft,
+                  duration: Duration(milliseconds: 500));
+            },
+          ),
         ),
       ),
     );

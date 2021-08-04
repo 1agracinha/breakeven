@@ -7,11 +7,8 @@ class MovimentacaoRepository {
   adicionarMovimentacao(
       SaldoMovimentacao movimentacao, String idUsuario) async {
     try {
-      final response = await firestore
-          .collection("usuario")
-          .doc(idUsuario)
-          .collection("movimentacao")
-          .add(movimentacao.toMap());
+      final response =
+          await firestore.collection("movimentacao").add(movimentacao.toMap());
       return response;
     } catch (e) {
       print("ERRO AO ADICIONAR MOVIMENTACAO: $e");
@@ -20,24 +17,16 @@ class MovimentacaoRepository {
 
   getMovimentacao(String idUsuario) async {
     try {
-      final response = await firestore
-          .collection("usuario")
-          .doc(idUsuario)
-          .collection("movimentacao")
-          .get();
+      final response = await firestore.collection("movimentacao").get();
 
       return response.docs;
     } catch (e) {}
   }
 
-  getMovimentacaoDetalhes(String idUsuario, String doc) async {
+  getMovimentacaoDetalhes(String idUsuario, String idMovimentacao) async {
     try {
-      final response = await firestore
-          .collection("usuario")
-          .doc(idUsuario)
-          .collection("movimentacao")
-          .doc(doc)
-          .get();
+      final response =
+          await firestore.collection("movimentacao").doc(idMovimentacao).get();
 
       return response;
     } catch (e) {}

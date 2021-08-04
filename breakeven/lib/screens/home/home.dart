@@ -18,19 +18,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  // UsuarioController usuarioController = Get.find();
-  // GetStorage box = GetStorage('usuario');
-  // @override
-  // void initState() {
-  //   carregarIdUsuario().then((id) => usuarioController.idUsuario.value = id);
-  //   super.initState();
-  // }
-
-  // Future carregarIdUsuario() async {
-  //   var id = await box.read("idUsuario");
-  //   return id;
-  // }
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SaldoController>(
