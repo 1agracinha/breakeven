@@ -39,12 +39,14 @@ class CadastroPage extends StatelessWidget {
                   ),
                   MainTextField(
                       labelText: "Senha",
+                      obscureText: true,
                       textController: senhaController,
                       validator: (value) {
                         if (value.isEmpty) return "Campo Obrigatório!";
                       }),
                   MainTextField(
                       labelText: "Confirmar Senha",
+                      obscureText: true,
                       textController: confirmarSenhaController,
                       validator: (value) {
                         if (value.isEmpty) return "Campo Obrigatório!";

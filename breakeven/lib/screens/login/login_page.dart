@@ -47,6 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   MainTextField(
                       labelText: "Senha",
+                      obscureText: true,
                       textController: senhaController,
                       validator: (value) {
                         if (value.isEmpty) return "Campo Obrigatório!";

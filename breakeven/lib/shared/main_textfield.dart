@@ -5,11 +5,12 @@ class MainTextField extends StatelessWidget {
   final String labelText;
   final TextEditingController textController;
   final Function(String) validator;
-  MainTextField({
-    @required this.labelText,
-    @required this.textController,
-    @required this.validator,
-  });
+  final bool obscureText;
+  MainTextField(
+      {@required this.labelText,
+      @required this.textController,
+      @required this.validator,
+      this.obscureText = false});
 
   final UnderlineInputBorder borderStyle = UnderlineInputBorder(
       borderSide: BorderSide(width: 1, color: primaryColor));
@@ -21,6 +22,7 @@ class MainTextField extends StatelessWidget {
       child: TextFormField(
         controller: textController,
         validator: validator,
+        obscureText: obscureText,
         decoration: InputDecoration(
           labelText: labelText,
           labelStyle: TextStyle(color: cinza, fontSize: 16),

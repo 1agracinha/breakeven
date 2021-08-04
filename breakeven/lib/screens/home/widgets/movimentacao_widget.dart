@@ -68,8 +68,8 @@ class _MovimentacaoWidgetState extends State<MovimentacaoWidget> {
                         background: Container(color: vermelho),
                         direction: DismissDirection.startToEnd,
                       );
-                    }
-                    return null;
+                    } else
+                      return Text("");
                   });
             }),
       ),
