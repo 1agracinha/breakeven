@@ -1,10 +1,14 @@
 import 'package:breakeven/controller/saldo_controller.dart';
+import 'package:breakeven/screens/splash.dart';
 import 'package:breakeven/theme/cores.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class CabecalhoHome extends StatelessWidget {
   final SaldoController sc;
-  const CabecalhoHome({this.sc});
+  GetStorage box = GetStorage("usuario");
+  CabecalhoHome({this.sc});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +28,7 @@ class CabecalhoHome extends StatelessWidget {
               Text(
                 "R\$${sc.valorEntrada}",
                 style: TextStyle(
-                    fontSize: 24, color: Theme.of(context).primaryColor),
+                    fontSize: 22, color: Theme.of(context).primaryColor),
               ),
             ],
           ),
@@ -38,14 +42,20 @@ class CabecalhoHome extends StatelessWidget {
               Text(
                 "R\$${sc.valorAtual}",
                 style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 22,
                     color: sc.valorAtual.contains("-") ? vermelho : verde),
               )
             ],
           ),
-          SizedBox(
-            width: 0,
-          ),
+          IconButton(
+              onPressed: () {
+                box.remove("idUsuario");
+                Get.to(() => Splash());
+              },
+              icon: Icon(
+                Icons.logout,
+                color: Colors.grey,
+              ))
         ],
       ),
     );
