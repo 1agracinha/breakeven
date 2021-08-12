@@ -1,5 +1,5 @@
 ### Breakeven
-> Monitore seu saldo facilmente - Projeto de estudos
+> Monitore seu saldo facilmente - Projeto de estudos.
 <table>
   <tr>
     <td>
